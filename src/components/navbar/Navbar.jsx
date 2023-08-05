@@ -8,10 +8,10 @@ const Navbar = () => {
   return (
     <>
     <AppBar sx={{bgcolor:'white', position:'fixed', top:'0', width:"100%", height:"60px"}} variant="outlined">
-      <Toolbar sx={{justifyContent:'space-between', color:'black'}}>
-        <ArrowBackIcon sx={{fontSize:30}}/>
+      <Toolbar sx={{justifyContent:'center', color:'black'}}>
+        {/* <ArrowBackIcon sx={{fontSize:30}}/> */}
         <Typography sx={{fontSize:30}}>CloudX Project</Typography>
-        <AccountCircleIcon sx={{fontSize:30}}/>
+        {/* <AccountCircleIcon sx={{fontSize:30}}/> */}
       </Toolbar>
       
     </AppBar>

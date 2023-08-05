@@ -5,10 +5,6 @@ import Home from './components/home/Home';
 //import UploadResume from "./components/uploadResume/UploadResume"
 function App() {
   return (
-    // <div className='App'>
-    //   {/* <UploadResume/> */}
-    //   <PdfViewer/>
-    // </div>
     <Router>
       <Routes>
         <Route path='/' element={<Home/>}/>
