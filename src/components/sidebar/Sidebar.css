@@ -1,0 +1,17 @@
+.pro-sidebar {
+  /* height: 100vh; */
+}
+
+.sidebar-menu {
+}
+
+.sidebar-menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* padding: 4px; */
+}
+
+.sidebar-menu-item p {
+  margin-left: 5%;
+}

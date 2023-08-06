@@ -1,9 +1,12 @@
 import React, { createRef, useState } from 'react'
+import {useNavigate} from 'react-router-dom'
 import Navbar from '../navbar/Navbar'
+import CheckIcon from '@mui/icons-material/Check';
 import "./Home.css"
 
 const Home = () => {
 
+  const navigate = useNavigate();
   const [resume, setResume] = useState(null)
   const fileInput = createRef();
 
@@ -32,7 +35,10 @@ const Home = () => {
     }else{
       alert("Upload a file")
     }
+  }
 
+  const navigateToResume= () =>{
+    navigate('/resume')
   }
 
   return (
@@ -48,13 +54,16 @@ const Home = () => {
         <div className="file-upload-wrap">
           <input className="file-upload-input" type='file' name="resume" ref={fileInput}/>
           <div className='drag-text'>
-            {resume  !== null ? <h3> {resume}</h3> : <h3> Drag and Drop a file </h3>}
+            {resume  !== null ? <h3> {resume}</h3> : <h3>  Select Your Resume</h3>}
           </div>
         </div>
-          <input className="file-upload-btn" type="submit" value="Upload"/>
+        <button className="file-upload-btn" type="submit" value="Upload"><CheckIcon/> <p>Upload</p></button>
+        {/* <input className="file-upload-btn" type="submit" value="Upload"></input> */}
       </form>
     </div>
-    {/* <button onClick={}>Next</button> */}
+    
+    <button className='next-btn' onClick={navigateToResume}>Next</button>
+  
     </div>
   )
 }

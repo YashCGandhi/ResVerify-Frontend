@@ -1,16 +1,66 @@
-.container{
-}
+/* .container { */
+/* grid-template-columns: 20% 80%; */
+/* width: 100%;
+  height: 100vh; */
+/* } */
 
-.pdf-container{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    top: 60px;
+/* .pdf-container {
+  width: 100%;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  height: 100vh;
+} */
+
+/* .side-bar {
+  position: absolute;
+  left: 0;
+  margin-left: 18px;
+  height: 100vh;
+  overflow: hidden;
+}
+.display-resume {
+  width: 80%;
 }
 
 @media screen and (max-width: 600px) {
-    .pdf-container {
-      width: 300px;
-    }
+  .pdf-container {
+    width: 300px;
   }
+} */
+.container {
+  overflow: hidden;
+}
+
+.pdf-container {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  margin-top: 60px;
+  width: 100%;
+}
+
+.side-bar {
+  width: 20%;
+  max-width: max-content;
+  background-color: #f1f1f1;
+  overflow: hidden;
+}
+
+.display-resume {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  background-color: #fff;
+}
+
+.resume-doc {
+  /* transform: scaleX(1.1); */
+}
+
+/* .resume {
+  overflow: scroll;
+  height: 100vh;
+  transform: translateY(10%) scale(1.2);
+} */

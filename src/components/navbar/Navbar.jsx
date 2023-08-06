@@ -7,7 +7,7 @@ import { AppBar, Toolbar, Typography } from '@mui/material';
 const Navbar = () => {
   return (
     <>
-    <AppBar sx={{bgcolor:'white', position:'fixed', top:'0', width:"100%", height:"60px"}} variant="outlined">
+    <AppBar sx={{bgcolor:'white', position:'fixed', top:'0', width:"100%", height:"60px",}} variant="elevation">
       <Toolbar sx={{justifyContent:'center', color:'black'}}>
         {/* <ArrowBackIcon sx={{fontSize:30}}/> */}
         <Typography sx={{fontSize:30}}>CloudX Project</Typography>
