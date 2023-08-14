@@ -13,7 +13,7 @@ function Login() {
   useEffect(() => {
     if (isAuthenticated) {
       alert("sign up successful");
-      return navigate("/test");
+      return navigate("/home");
     }
   }, [isAuthenticated]); // listen for when isAuthenticated has changed
 
