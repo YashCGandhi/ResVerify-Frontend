@@ -65,7 +65,7 @@ const Home = () => {
               {resume !== null ? (
                 <h3> {resume}</h3>
               ) : (
-                <h3> Select Your Resume</h3>
+                <h3> Select Your Resumes</h3>
               )}
             </div>
           </div>
