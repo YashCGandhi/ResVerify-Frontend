@@ -60,7 +60,7 @@ const Home = () => {
         console.error(e.message);
       }
     } else {
-      alert("Upload a file");
+      alert("Upload Resume");
     }
   };
 
