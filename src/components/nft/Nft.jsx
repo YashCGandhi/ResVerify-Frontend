@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ClearIcon from "@mui/icons-material/Clear";
 import {
@@ -13,6 +14,7 @@ import "./Nft.css";
 import Navbar from "../navbar/Navbar";
 
 const Nft = () => {
+=
   const { isAuthenticated, isSessionLoading } = useSession();
   const { user, isUserLoading } = useUser();
   const { logout } = useDescope();
@@ -65,9 +67,11 @@ const Nft = () => {
       organization:
         "K.J Somaiya Institute of Engineering & I.T, University of Mumbai",
     },
+
   ]);
 
   const [formData, setFormData] = useState(null);
+
 
   const rawToFormData = (rawD) => {
     const formArray = [];
