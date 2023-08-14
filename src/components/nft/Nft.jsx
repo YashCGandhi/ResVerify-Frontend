@@ -1,9 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import ClearIcon from "@mui/icons-material/Clear";
+import {
+  useDescope,
+  useSession,
+  useUser,
+  getSessionToken,
+} from "@descope/react-sdk";
+import { Descope } from "@descope/react-sdk";
+
 import "./Nft.css";
+import Navbar from "../navbar/Navbar";
 
 const Nft = () => {
+=
+  const { isAuthenticated, isSessionLoading } = useSession();
+  const { user, isUserLoading } = useUser();
+  const { logout } = useDescope();
+
+  const handleLogout = useCallback(() => {
+    logout();
+  }, [logout]);
+
   const [rawData, setRawData] = useState([
     {
       accreditation: {
@@ -48,14 +67,11 @@ const Nft = () => {
       organization:
         "K.J Somaiya Institute of Engineering & I.T, University of Mumbai",
     },
+
   ]);
 
-  const [formData, setFormData] = useState([
-    { key: "lasjdflka;sjfl;asjdflak", value: "Initial Value" },
-    { key: "Author", value: "John Doe" },
-    { key: "Date", value: "2022-08-12" },
-    { key: "Date", value: "2022-08-12" },
-  ]);
+  const [formData, setFormData] = useState(null);
+
 
   const rawToFormData = (rawD) => {
     const formArray = [];
@@ -103,58 +119,85 @@ const Nft = () => {
   };
 
   return (
-    <div className="container">
-      <form className="form-container" onSubmit={handleSubmit}>
-        {formData.map((item, index) => (
-          <div className="form-row" key={index}>
-            <label className="form-label">
-              <p>Organization:</p>
-              <input
-                type="text"
-                name="key"
-                value={item.key}
-                onChange={(e) => handleChange(e, index)}
-              />
-              {/* <textarea
+    <>
+      {!isAuthenticated && (
+        <Descope
+          flowId="sign-up-or-in"
+          onSuccess={(e) => console.log(e.detail.user)}
+          onError={(e) => console.log("Could not log in!")}
+        />
+      )}
+
+      {(isSessionLoading || isUserLoading) && <p>Loading...</p>}
+
+      {!isUserLoading && isAuthenticated && (
+        <>
+          <Navbar />
+          <div className="container">
+            {formData && (
+              <form className="form-container" onSubmit={handleSubmit}>
+                {formData.map((item, index) => (
+                  <div className="form-row" key={index}>
+                    <label className="form-label">
+                      <p>Organization:</p>
+                      <input
+                        type="text"
+                        name="key"
+                        value={item.key}
+                        onChange={(e) => handleChange(e, index)}
+                      />
+                      {/* <textarea
                 type="text"
                 name="key"
                 value={item.key}
                 onChange={(e) => handleChange(e, index)}
               ></textarea> */}
-            </label>
-            <label className="form-label">
-              <p>Token:</p>
-              <input
-                id={index + "password"}
-                type="password"
-                name="value"
-                value={item.value}
-                onChange={(e) => handleChange(e, index)}
-              />
-            </label>
-            <div className="label-btn-container">
-              <button
-                type="button"
-                onClick={() => hideShow(index + "password")}
-              >
-                <VisibilityIcon />
-              </button>
-              <button type="button" onClick={() => handleRemovePair(index)}>
-                <ClearIcon />
-              </button>
-            </div>
+                    </label>
+                    <label className="form-label">
+                      <p>Token:</p>
+                      <input
+                        id={index + "password"}
+                        type="password"
+                        name="value"
+                        value={item.value}
+                        onChange={(e) => handleChange(e, index)}
+                      />
+                    </label>
+                    <div className="label-btn-container">
+                      <button
+                        type="button"
+                        onClick={() => hideShow(index + "password")}
+                      >
+                        <VisibilityIcon />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => handleRemovePair(index)}
+                      >
+                        <ClearIcon />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+                <div className="button-container">
+                  <button className="btn" type="button" onClick={handleAddPair}>
+                    Add Pair
+                  </button>
+                  <button className="btn" type="submit">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            )}
           </div>
-        ))}
-        <div className="button-container">
-          <button className="btn" type="button" onClick={handleAddPair}>
-            Add Pair
-          </button>
-          <button className="btn" type="submit">
-            Submit
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="logout">
+            <p>Hello {user.name}</p>
+            <div>My Private Component</div>
+            <button onClick={handleLogout}>Logout</button>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 
