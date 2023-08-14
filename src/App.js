@@ -9,7 +9,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Login />} />
         {/* <Route path="/test" element={<Test />} /> */}
         <Route path="/home" element={<Home />} />
         <Route path="/nft" element={<Nft />} />
