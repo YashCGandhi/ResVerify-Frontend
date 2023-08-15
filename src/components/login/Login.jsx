@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { Descope, useSession, useUser } from "@descope/react-sdk";
 import { useNavigate } from "react-router-dom";
+import "./Login.css";
 
 function Login() {
   // isAuthenticated: boolean - is the user authenticated?
@@ -18,12 +19,11 @@ function Login() {
   }, [isAuthenticated]); // listen for when isAuthenticated has changed
 
   return (
-    <div className="page">
+    <div className="login">
       {(isSessionLoading || isUserLoading) && <p>Loading...</p>}
 
       {!isAuthenticated && (
         <>
-          <h1 className="title">Login/SignUp to see the Secret Message!</h1>
           <Descope
             flowId="sign-up-or-in"
             onSuccess={(e) => console.log(e.detail.user)}
