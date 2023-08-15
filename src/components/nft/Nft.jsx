@@ -14,9 +14,33 @@ import "./Nft.css";
 import Navbar from "../navbar/Navbar";
 
 const Nft = () => {
+  const [isTokenValid, setIsTokenValid] = useState(false);
   const { isAuthenticated, isSessionLoading } = useSession();
   const { user, isUserLoading } = useUser();
   const { logout } = useDescope();
+
+  const ValidateToken = async () => {
+    const sessionToken = getSessionToken();
+
+    // example fetch call with authentication header
+    try {
+      const response = await fetch("/protected", {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + sessionToken,
+        },
+      });
+      if (response.ok) {
+        setIsTokenValid(true);
+      }
+    } catch (e) {
+      console.error(e.message);
+    }
+  };
+
+  useEffect(() => {
+    ValidateToken();
+  }, []);
 
   const handleLogout = useCallback(() => {
     logout();
@@ -127,7 +151,7 @@ const Nft = () => {
 
       {(isSessionLoading || isUserLoading) && <p>Loading...</p>}
 
-      {!isUserLoading && isAuthenticated && (
+      {!isUserLoading && isAuthenticated && isTokenValid && (
         <>
           <Navbar />
           <div className="container">
