@@ -31,5 +31,5 @@ jobs:
     - run: cd /home/nbhatia3/cloudXBackend
     - run: git pull
     - run: pkill -9 gunicorn || /bin/true
-    - run: ./deploy_gunicorn.sh
+    - run: sh /home/nbhatia3/cloudXBackend/deploy_gunicorn.sh  || /bin/true
     
