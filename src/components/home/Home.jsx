@@ -1,4 +1,4 @@
-import React, { createRef, useState, useCallback } from "react";
+import React, { createRef, useState, useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../navbar/Navbar";
 import CheckIcon from "@mui/icons-material/Check";
@@ -12,23 +12,12 @@ import { Descope } from "@descope/react-sdk";
 import "./Home.css";
 
 const Home = () => {
+  const [isTokenValid, setIsTokenValid] = useState(false);
   const { isAuthenticated, isSessionLoading } = useSession();
   const { user, isUserLoading } = useUser();
   const { logout } = useDescope();
 
   const navigate = useNavigate();
-
-  const exampleFetchCall = async () => {
-    const sessionToken = getSessionToken();
-
-    // example fetch call with authentication header
-    fetch("your_application_server_url", {
-      headers: {
-        Accept: "application/json",
-        Authorization: "Bearer " + sessionToken,
-      },
-    });
-  };
 
   const handleLogout = useCallback(() => {
     logout();
@@ -36,6 +25,29 @@ const Home = () => {
 
   const [resume, setResume] = useState(null);
   const fileInput = createRef();
+
+  const ValidateToken = async () => {
+    const sessionToken = getSessionToken();
+
+    // example fetch call with authentication header
+    try {
+      const response = await fetch("/protected", {
+        headers: {
+          Accept: "application/json",
+          Authorization: "Bearer " + sessionToken,
+        },
+      });
+      if (response.ok) {
+        setIsTokenValid(true);
+      }
+    } catch (e) {
+      console.error(e.message);
+    }
+  };
+
+  useEffect(() => {
+    ValidateToken();
+  }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -64,12 +76,8 @@ const Home = () => {
     }
   };
 
-  const navigateToResume = () => {
-    navigate("/resume");
-  };
-
   const navigateToNFT = () => {
-    navigate("nft");
+    navigate("/nft");
   };
 
   return (
@@ -84,7 +92,7 @@ const Home = () => {
 
       {(isSessionLoading || isUserLoading) && <p>Loading...</p>}
 
-      {!isUserLoading && isAuthenticated && (
+      {!isUserLoading && isAuthenticated && isTokenValid && (
         <>
           <div className="home-page">
             <Navbar />
