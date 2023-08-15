@@ -29,7 +29,6 @@ jobs:
     - run: npm run build
     - run: cp -r build/* /var/www/html/ 
     - run: cd /home/nbhatia3/cloudXBackend
-    - run: pip install -r requirements.txt
     - run: git pull
     - run: pkill -9 gunicorn
     - run: ./deploy_gunicorn.sh
