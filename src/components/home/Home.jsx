@@ -83,11 +83,13 @@ const Home = () => {
   return (
     <>
       {!isAuthenticated && (
-        <Descope
-          flowId="sign-up-or-in"
-          onSuccess={(e) => console.log(e.detail.user)}
-          onError={(e) => console.log("Could not log in!")}
-        />
+        <div className="login">
+          <Descope
+            flowId="sign-up-or-in"
+            onSuccess={(e) => console.log(e.detail.user)}
+            onError={(e) => console.log("Could not log in!")}
+          />
+        </div>
       )}
 
       {(isSessionLoading || isUserLoading) && <p>Loading...</p>}
