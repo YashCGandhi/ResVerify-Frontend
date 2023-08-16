@@ -47,7 +47,7 @@ const Home = () => {
 
   useEffect(() => {
     ValidateToken();
-  }, []);
+  }, [isAuthenticated]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -80,13 +80,18 @@ const Home = () => {
     navigate("/nft");
   };
 
+  const signUp = (e) => {
+    console.log(e.detail.user.name);
+    console.log(e.detail.user.email);
+    console.log(e.detail.user.phone);
+  };
   return (
     <>
       {!isAuthenticated && (
         <div className="login">
           <Descope
             flowId="sign-up-or-in"
-            onSuccess={(e) => console.log(e.detail.user)}
+            onSuccess={(e) => signUp(e)}
             onError={(e) => console.log("Could not log in!")}
           />
         </div>
@@ -125,14 +130,15 @@ const Home = () => {
                 {/* <input className="file-upload-btn" type="submit" value="Upload"></input> */}
               </form>
             </div>
-
-            <button className="next-btn" onClick={navigateToNFT}>
-              Next
-            </button>
+            <div className="footer-btns">
+              <button onClick={handleLogout} className="log-out-btn">
+                Logout
+              </button>
+              <button className="next-btn" onClick={navigateToNFT}>
+                Next
+              </button>
+            </div>
           </div>
-          <p>Hello {user.name}</p>
-          <div>My Private Component</div>
-          <button onClick={handleLogout}>Logout</button>
         </>
       )}
     </>

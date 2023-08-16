@@ -9,6 +9,7 @@ import {
   getSessionToken,
 } from "@descope/react-sdk";
 import { Descope } from "@descope/react-sdk";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 import "./Nft.css";
 import Navbar from "../navbar/Navbar";
@@ -18,6 +19,8 @@ const Nft = () => {
   const { isAuthenticated, isSessionLoading } = useSession();
   const { user, isUserLoading } = useUser();
   const { logout } = useDescope();
+  const [verified, setVerified] = useState(false);
+  const [afindaData, setafinaData] = useState(null);
 
   const ValidateToken = async () => {
     const sessionToken = getSessionToken();
@@ -32,6 +35,7 @@ const Nft = () => {
       });
       if (response.ok) {
         setIsTokenValid(true);
+        await setAffinda();
       }
     } catch (e) {
       console.error(e.message);
@@ -101,7 +105,7 @@ const Nft = () => {
       const randomToken = Math.random();
       formArray.push({ key: org, value: randomToken });
     });
-    console.log(formArray);
+    // console.log(formArray);
     setFormData(formArray);
   };
   useEffect(() => {
@@ -124,19 +128,47 @@ const Nft = () => {
     setFormData(updatedFormData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const fData = new FormData();
+    fData.set("updatedtokens", JSON.stringify(formData));
+    console.log(fData);
     // Handle form submission
-    console.log(formData);
+    try {
+      const response = await fetch("/updatetokens", {
+        headers: {
+          Accept: "application/json",
+        },
+        method: "POST",
+        body: fData,
+      });
+
+      const parsedResponse = await response.json();
+      if (response.ok) {
+        console.log(parsedResponse);
+        setVerified(true);
+      } else {
+        console.error("some error occured.");
+      }
+      console.log(formData);
+    } catch (e) {
+      console.error(e.message);
+    }
   };
 
-  const hideShow = (id) => {
-    const selectedInput = document.getElementById(id);
-    if (selectedInput.type === "password") {
-      selectedInput.type = "text";
-    } else if (selectedInput.type === "text") {
-      selectedInput.type = "password";
-    }
+  // const hideShow = (id) => {
+  //   const selectedInput = document.getElementById(id);
+  //   if (selectedInput.type === "password") {
+  //     selectedInput.type = "text";
+  //   } else if (selectedInput.type === "text") {
+  //     selectedInput.type = "password";
+  //   }
+  // };
+
+  const setAffinda = async () => {
+    console.log("Set Affinda");
+    const response = await fetch("/returnparsed");
+    const res = response.json();
   };
 
   return (
@@ -169,30 +201,27 @@ const Nft = () => {
                         value={item.key}
                         onChange={(e) => handleChange(e, index)}
                       />
-                      {/* <textarea
-                type="text"
-                name="key"
-                value={item.key}
-                onChange={(e) => handleChange(e, index)}
-              ></textarea> */}
                     </label>
                     <label className="form-label">
-                      <p>Token:</p>
+                      <p>Token,TransactionId:</p>
                       <input
                         id={index + "password"}
-                        type="password"
+                        type="text"
                         name="value"
                         value={item.value}
                         onChange={(e) => handleChange(e, index)}
                       />
                     </label>
+
                     <div className="label-btn-container">
-                      <button
+                      {/* <button
                         type="button"
                         onClick={() => hideShow(index + "password")}
                       >
-                        <VisibilityIcon />
-                      </button>
+                      </button> */}
+                      <i>
+                        {verified && index == 0 && <CheckCircleOutlineIcon />}
+                      </i>
                       <button
                         type="button"
                         onClick={() => handleRemovePair(index)}
@@ -213,10 +242,10 @@ const Nft = () => {
               </form>
             )}
           </div>
-          <div className="logout">
-            <p>Hello {user.name}</p>
-            <div>My Private Component</div>
-            <button onClick={handleLogout}>Logout</button>
+          <div className="footer-btns">
+            <button onClick={handleLogout} className="log-out-btn">
+              Logout
+            </button>
           </div>
         </>
       )}
