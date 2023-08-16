@@ -79,6 +79,8 @@
 .label-btn-container {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .label-btn-container button {
   background-color: transparent;
@@ -97,10 +99,31 @@
   height: 40px;
   margin-top: 8px;
   margin-bottom: 24px;
-  border: none;
-  border-radius: 0.8rem;
+
   padding: 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  background: rgba(255, 255, 0, 0.652);
+  color: #000000;
+  border: 0.5px solid;
+  border-radius: 1rem;
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
+}
+
+.log-out-btn {
+  margin: 20px 20px;
+  width: 15%;
+  height: 5vh;
+  border: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: rgba(255, 255, 0, 0.652);
+  color: #000000;
+  border: 0.5px solid;
+  border-radius: 1rem;
+  font-family: "Open Sans", sans-serif;
+  cursor: pointer;
 }
