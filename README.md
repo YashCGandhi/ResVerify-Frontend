@@ -1,10 +1,32 @@
-# Getting Started with Create React App
+## Project Overview
+Developed an innovative blockchain-based platform that verifies and authenticates resume details using NFTs to combat fraudulent claims and enhance the integrity of the recruitment process.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Key Features
+- Utilized Ethereum blockchain and NFT-based intelligent contracts using Solidity to facilitate reliable information exchange between institutions and users.
+- Integrated a Flask server and web3 API for swift authentication of supplied tokens, enhancing resume authenticity and ATS ranking.
+- Maintained a list of NFT-compliant companies/institutes to ensure users weren't penalized for lacking permits.
+- Planned future iterations to employ robust encryption algorithms like SHA-2 for enhanced security.
 
-## Available Scripts
+## Technical Stack
+Backend: Flask, Gunicorn
+Frontend: React.js
+Deployment: Apache2 on a self-hosted container, GitHub Runner on Ubuntu OS
+Blockchain: Ethereum, Ganache, Truffle Suite, Solidity, Remix IDE
+Other Tools: ExifTool (for embedding metadata), mockaroo, tonic.ai
 
-In the project directory, you can run:
+## Challenges & Learnings
+Overcame challenges related to Ethereum testnets, SPA page refreshing rules, and proxy pass configurations.
+Gained hands-on experience with blockchain concepts, NFTs, and various frameworks.
+Explored multiple tools and APIs, including the llama model, ChatGPT API, and Affinda API.
+
+## Achievements
+
+Winner of the Descope Challenge #2 at DeveloperWeek CloudX 2023 Hackathon.
+Successfully brainstormed and implemented a real-world use case backed by web3.
+
+## Project Website
+[https://github.com/nbhatia3/NFT-Powered-Resume-Verification](https://github.com/nbhatia3/NFT-Powered-Resume-Verification)
+
 
 ### `npm start`
 
@@ -14,56 +36,17 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
+The build is minified, and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### `npm run build` fails to minify
 
